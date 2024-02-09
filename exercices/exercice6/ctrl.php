@@ -2,12 +2,12 @@
 class Ctrl
 {
   private $wrk;
-
-  public function __construct()
+  public function construct()
   {
     require('wrk.php');
     $this->wrk = new wrk();
   }
+
   public function getEquipesFromDB()
   {
 
