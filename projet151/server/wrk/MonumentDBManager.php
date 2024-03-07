@@ -13,18 +13,21 @@ class MonumentDBManager
 
     public function ajouterMonument($nom, $localite, $coordonneeX, $coordonneeY, $fk_Pays)
     {
+        $test = "";
         try {
             $test = connexion::getInstance()->startTransaction();
             $array = array(":nom"->$nom, ":localite"->$localite, ":coordonneeX"->$coordonneeX, "coordonneeY"->$coordonneeY, "fk_Pays"->$fk_Pays);
             $test = connexion::getInstance()->executeQuery("INSERT INTO monuments (nom, localite, coordonneeX, coordonneeY, fk_Pays) VALUES (:nom, :localite, :coordonneeX, :coordonneeY, :fk_Pays)", $array);
-            if ($test->rowCount() == 1) {
-                echo json_encode($test);
+            if ($test) {
+                http_response_code(200);
+                $result = json_encode(array("IsOk" => true, "message" => "ajout monument OK"));
                 $test = connexion::getInstance()->commitTransaction();
             }
         } catch (PDOException $e) {
             echo "Erreur lors de l'ajout d'un monument";
             $test = connexion::getInstance()->rollbackTransaction();
         }
+        return $test;
     }
     public function modifierMonument($nom, $localite, $coordonneeX, $coordonneeY, $fk_Pays)
     {

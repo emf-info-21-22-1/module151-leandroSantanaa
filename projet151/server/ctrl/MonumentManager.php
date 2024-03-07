@@ -24,9 +24,9 @@ class MonumentManager
   }
   public function AjouterMonumentJSON($nom, $localite, $coordonneeX, $coordonneeY, $fk_Pays)
   {
-    $Ajout = $this->manager->ajouterMonument($nom, $localite, $coordonneeX, $coordonneeY, $fk_Pays);
-    $result = json_encode($Ajout);
-    return $result;
+    $monument = $this->manager->ajouterMonument($nom, $localite, $coordonneeX, $coordonneeY, $fk_Pays);
+    $message = json_decode($monument, true);
+    return $message["message"];
   }
   public function modifierMonumentJSON($id, $nom, $localite, $coordonneeX, $coordonneeY, $fk_Pays)
   {

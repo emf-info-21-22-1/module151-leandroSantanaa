@@ -20,14 +20,16 @@ class LoginDBManager
                 $param = array(':username' => $username, ':password' => $hashedPassword);
                 $Query = connexion::getInstance()->executeQuery('INSERT INTO t_user (username, password) VALUES (:username, :password)', $param);
                 if ($Query == 1) {
+                    http_response_code(200);
                     $test = Connexion::getInstance()->commitTransaction();
                     $result = json_encode(array("IsOk" => true, "message" => "Création d'utilisateur OK"));
                 }
             } else {
+                http_response_code(500);
                 $test = Connexion::getInstance()->rollbackTransaction();
-                $result = json_encode(["error" => "Password hashing failed"]);
             }
         } catch (PDOException $e) {
+            http_response_code(500);
             $test = Connexion::getInstance()->rollbackTransaction();
             $result = json_encode(["error" => $e->getMessage()]);
         }
@@ -49,14 +51,17 @@ class LoginDBManager
 
 
                 if (password_verify($password, $hashpash)) {
+                    http_response_code(200);
                     $result = json_encode(array("IsOk" => true, "message" => "Connexion à l'utilisateur OK"));
                 } else {
+                    http_response_code(500);
                     $result = "Erreur lors de la vérification du mot de passe";
+
                 }
             }
         } else {
-            $result = "Erreur dans le contrôle du login"
-            ;
+            http_response_code(500);
+            $result = "Erreur dans le contrôle du login";
         }
         return $result;
     }
