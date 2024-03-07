@@ -1,6 +1,6 @@
 <?php
-require_once('wrk/Connexion.php');
-require_once('bean/Joueur.php');
+require_once('Connexion.php');
+require_once('bean/Monument.php');
 class MonumentDBManager
 {
     private $connexion;

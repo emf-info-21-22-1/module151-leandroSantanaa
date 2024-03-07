@@ -1,6 +1,6 @@
 <?php
 require_once('wrk/MonumentDBManager.php');
-class JoueurCtrl
+class MonumentManager
 {
 
   private $manager;

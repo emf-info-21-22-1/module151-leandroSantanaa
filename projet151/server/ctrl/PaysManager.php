@@ -1,6 +1,6 @@
 <?php
-require_once('wrk/paysDBManager.php');
-class paysManager
+require_once('wrk/PaysDBManager.php');
+class PaysManager
 {
 
   private $manager;

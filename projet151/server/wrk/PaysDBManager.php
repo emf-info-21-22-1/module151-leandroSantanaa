@@ -1,7 +1,7 @@
 <?php
 require_once('wrk/Connexion.php');
-require_once('bean/Joueur.php');
-class paysDBManager
+require_once('bean/Pays.php');
+class PaysDBManager
 {
     private $Connexion;
 

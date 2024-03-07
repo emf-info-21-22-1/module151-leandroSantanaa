@@ -1,4 +1,3 @@
-
 <?php
 
 /**
@@ -6,6 +5,8 @@
  */
 class SessionManager
 {
+    private static $_instance = null;
+
     /**
      * Create a new instance of SessionManager, it creates a new session if it already doesn't exist
      */
@@ -14,6 +15,13 @@ class SessionManager
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
+    }
+    public static function getInstance()
+    {
+        if (is_null(self::$_instance)) {
+            self::$_instance = new SessionManager();
+        }
+        return self::$_instance;
     }
     /**
      * Return the value of an existing key stored in the session, otherwise null
@@ -59,5 +67,9 @@ class SessionManager
     public function has($key)
     {
         return array_key_exists($key, $_SESSION);
+    }
+    public function destroy()
+    {
+        session_destroy();
     }
 }
