@@ -5,19 +5,23 @@
  * @version 1.0 / 20-SEP-2013
  */
 
-var BASE_URL = "http://localhost:8081/serveur.php";
+var BASE_URL = "http://localhost:8081/";
 
 /**
  * Fonction permettant de charger les données d'équipe.
  * @param {type} Fonction de callback lors du retour avec succès de l'appel.
  * @param {type} Fonction de callback en cas d'erreur.
  */
-function chargerPersonnel(successCallback, errorCallback) {
+function createAccount(username, password, successCallback, errorCallback) {
     $.ajax({
-        type: "GET",
-        dataType: "xml",
-        url: BASE_URL,
-        data: 'action=getInfos',
+        type: "POST",
+        dataType: "json",
+        url: "Session.php",
+        data: {
+            "action": "createAccount",
+            "username": username,
+            "password": password
+        },
         xhrFields: {
             withCredentials: true
         },
@@ -26,19 +30,17 @@ function chargerPersonnel(successCallback, errorCallback) {
     });
 }
 
-
-/**
- * Fonction permettant de charger les données d'équipe.
- * @param {type} teamid, id de l'équipe dans laquelle trouver les joueurs
- * @param {type} Fonction de callback lors du retour avec succès de l'appel.
- * @param {type} Fonction de callback en cas d'erreur.
- */
-function connect(passwd, successCallback, errorCallback) {
+function loginAjax(username, password, successCallback, errorCallback) {
+    console.log("reuquete LOGIN");
     $.ajax({
         type: "POST",
-        dataType: "xml",
-        url: BASE_URL,
-        data: 'action=connect&password=' + passwd,
+        dataType: "json",
+        url: BASE_URL + "Session.php",
+        data: {
+            "action": "login",
+            "username": username,
+            "password": password
+        },
         xhrFields: {
             withCredentials: true
         },
@@ -46,19 +48,12 @@ function connect(passwd, successCallback, errorCallback) {
         error: errorCallback
     });
 }
-
-/**
- * Fonction permettant de charger les données d'équipe.
- * @param {type} teamid, id de l'équipe dans laquelle trouver les joueurs
- * @param {type} Fonction de callback lors du retour avec succès de l'appel.
- * @param {type} Fonction de callback en cas d'erreur.
- */
-function disconnect(successCallback, errorCallback) {
+function logOut(successCallback, errorCallback) {
     $.ajax({
         type: "POST",
-        dataType: "xml",
-        url: BASE_URL,
-        data: 'action=disconnect',
+        dataType: "json",
+        url: "Session.php",
+        data: 'action=POST',
         xhrFields: {
             withCredentials: true
         },

@@ -10,29 +10,29 @@ class MonumentManager
     $this->manager = new MonumentDBManager();
   }
 
-  public function getMonumentsJSON()
+  public function getMonumentJSON()
   {
     $monuments = $this->manager->getMonuments();
-    $result = json_encode($monuments);
-    return $result;
+    $result = json_decode($monuments, true);
+    return $result["data"];
   }
-  public function getMonumentJSON($monument)
+  public function getMonumentsJSON($monument)
   {
     $aMonument = $this->manager->getMonumentById($monument);
-    $result = json_encode($aMonument);
-    return $result;
+    $result = json_decode($aMonument, true);
+    return $result["data"];
   }
-  public function AjouterMonumentJSON($nom, $localite, $coordonneeX, $coordonneeY, $fk_Pays)
+  public function AjouterMonumentJSON($nom, $localite, $coordonneeX, $coordonneeY, $username)
   {
-    $monument = $this->manager->ajouterMonument($nom, $localite, $coordonneeX, $coordonneeY, $fk_Pays);
+    $monument = $this->manager->ajouterMonument($nom, $localite, $coordonneeX, $coordonneeY, $username);
     $message = json_decode($monument, true);
     return $message["message"];
   }
-  public function modifierMonumentJSON($id, $nom, $localite, $coordonneeX, $coordonneeY, $fk_Pays)
+  public function modifierMonumentJSON($nom, $localite, $coordonneeX, $coordonneeY)
   {
-    $Ajout = $this->manager->modifierMonument($id, $nom, $localite, $coordonneeX, $coordonneeY, $fk_Pays);
+    $Ajout = $this->manager->modifierMonument($nom, $localite, $coordonneeX, $coordonneeY);
     $result = json_encode($Ajout);
-    return $result;
+    return $result["message"];
   }
   public function supprimerMonumentJSON($pk_monument)
   {

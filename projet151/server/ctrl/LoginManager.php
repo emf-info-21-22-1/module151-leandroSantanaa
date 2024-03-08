@@ -16,19 +16,16 @@ class LoginManager
     public function createAccount($username, $password)
     {
         $pays = $this->manager->createAccount($username, $password);
-        $message = json_decode($pays, true);
-        return $message["message"];
+        return $pays;
     }
     public function checkLogin($username, $password)
     {
-        $pays = $this->manager->checkLogin($username, $password);
-        $ok = json_decode($pays);
+        $login = $this->manager->checkLogin($username, $password);
+        $ok = json_decode($login);
         if ($ok) {
             $this->session->set("username", $username);
-            $message = json_decode($pays, true);
-            $pays = $message["message"];
         }
-        return $pays;
+        return $login;
     }
     public function disconnct()
     {

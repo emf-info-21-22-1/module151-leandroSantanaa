@@ -22,7 +22,7 @@ class LoginDBManager
                 if ($Query == 1) {
                     http_response_code(200);
                     $test = Connexion::getInstance()->commitTransaction();
-                    $result = json_encode(array("IsOk" => true, "message" => "Création d'utilisateur OK"));
+                    $result = json_encode(array("IsOk" => true, "message" => "Création d'utilisateur OK", "data" => $Query));
                 }
             } else {
                 http_response_code(500);
@@ -41,7 +41,6 @@ class LoginDBManager
         $params = array("username" => htmlspecialchars($username));
         $result = "";
 
-        $params = array('username' => $username);
         $Query = Connexion::getInstance()->selectSingleQuery("SELECT pk_user,Username,Password FROM t_user WHERE username=:username", $params);
         if ($Query) {
             $user = new User();
@@ -52,10 +51,10 @@ class LoginDBManager
 
                 if (password_verify($password, $hashpash)) {
                     http_response_code(200);
-                    $result = json_encode(array("IsOk" => true, "message" => "Connexion à l'utilisateur OK"));
+                    $result = json_encode(array("IsOk" => true, "message" => "Connexion à l'utilisateur OK", "Data" => $Query));
                 } else {
                     http_response_code(500);
-                    $result = "Erreur lors de la vérification du mot de passe";
+                    $result = "Mot de passe incorect";
 
                 }
             }

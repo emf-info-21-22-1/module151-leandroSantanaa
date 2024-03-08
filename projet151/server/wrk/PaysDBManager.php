@@ -59,7 +59,7 @@ class PaysDBManager
         try {
             $test = connexion::getInstance()->startTransaction();
             $param = array(':pk_Pays' => $pk_Pays);
-            $query = connexion::getInstance()->selectQuery("SELECT * FROM pays WHERE PK_Pays = :pk_Pays");
+            $query = connexion::getInstance()->selectQuery("SELECT * FROM t_pays WHERE PK_Pays = :pk_Pays");
             if ($query >= 11) {
                 foreach ($query as $row) {
                     echo json_encode($row);

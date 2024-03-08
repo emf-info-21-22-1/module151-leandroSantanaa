@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion et Création de Compte</title>
+    <link rel="stylesheet" href="stylesheets/main.css">
+    <script type="text/javascript" src="javascripts/helpers/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="javascripts/controllers/ctrl_connexion.js"></script>
+</head>
+
+<body>
+    <h1>Connexion</h1>
+    <form>
+        <label for="username">Nom d'utilisateur:</label><br>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">Mot de passe:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+        <button id="btnConexion" type="submit">Se connecter</button>
+    </form>
+
+    <h1>Création de Compte</h1>
+    <form >
+        <label for="new_username">Nouveau nom d'utilisateur:</label><br>
+        <input type="text" id="new_username" name="new_username" required><br>
+        <label for="new_password">Nouveau mot de passe:</label><br>
+        <input type="password" id="new_password" name="new_password" required><br><br>
+        <button id="btnCreer" type="submit">Créer un Compte </button>
+    </form>
+</body>
+
+</html>
