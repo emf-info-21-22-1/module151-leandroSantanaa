@@ -1,0 +1,109 @@
+button {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+    font-size: 17px;
+    padding: 1em 2.7em;
+    font-weight: 500;
+    background: #1f2937;
+    color: white;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.6em;
+    cursor: pointer;
+
+
+}
+.buttons2 {
+    text-align: center; /* Centre les éléments enfants horizontalement */
+}
+
+.buttons2 button {
+    margin: 0 10px; /* Ajoute une marge entre les boutons */
+    display: inline-block; /* Assure que les boutons respectent la marge automatique */
+}
+
+.gradient {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 0.6em;
+    margin-top: -0.25em;
+    background-image: linear-gradient(rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0.3));
+}
+
+.label {
+    position: relative;
+    top: -1px;
+}
+
+.transition {
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    transition-duration: 500ms;
+    background-color: rgba(16, 185, 129, 0.6);
+    border-radius: 9999px;
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+button:hover .transition {
+    width: 14em;
+    height: 14em;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+
+.b {
+    background-color: black;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center; /* Aligner le texte au centre horizontalement */
+}
+
+.h1 {
+    color: white;
+    margin: 0;
+    flex-grow: 1; /* Permet au titre de prendre tout l'espace disponible */
+}
+
+
+
+
+.text-holder {
+    color: white;
+    background-color: #171717;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px auto;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    max-width: 700px;
+}
+
+/* Styles conditionnels en fonction de la classe ajoutée dynamiquement */
+.text-holder.long-text {
+    font-size: 12px; /* Ajuster la taille de la police pour les contenus longs */
+}
+
+.text-holder.short-text {
+    font-size: 16px; /* Ajuster la taille de la police pour les contenus courts */
+}
